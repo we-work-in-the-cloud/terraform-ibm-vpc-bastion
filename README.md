@@ -8,7 +8,7 @@ Full examples are in the [examples](examples) folder.
 
 ```
 module "bastion" {
-  source = "github.com/we-work-in-the-cloud/terraform-ibm-vpc-bastion"
+  source = "github.com/we-work-in-the-cloud/terraform-ibm-bastion"
 
   vpc_id            = ibm_is_vpc.vpc.id
   resource_group_id = data.ibm_resource_group.resource_group.id
