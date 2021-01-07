@@ -17,3 +17,8 @@ output "bastion_security_group_id" {
   value       = ibm_is_security_group.bastion.id
   description = "ID of the security group assigned to the bastion interface"
 }
+
+output "bastion_maintenance_group_id" {
+  value = ibm_is_security_group.maintenance.id
+  description = "ID of the security group used to allow connection from the bastion to your instances"
+}
