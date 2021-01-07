@@ -4,7 +4,7 @@ This module deploys a bastion instance into an existing VPC. A bastion is an ins
 
 ## Usage
 
-Full examples are in the [examples](https://github.com/we-work-in-the-cloud/terraform-ibm-vpc-bastion/tree/master/examples/vpc-and-bastion) folder.
+Full examples are in the [examples](https://github.com/we-work-in-the-cloud/terraform-ibm-vpc-bastion/tree/master/examples) folder.
 
 ## Requirements
 
