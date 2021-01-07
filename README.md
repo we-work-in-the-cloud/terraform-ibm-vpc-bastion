@@ -4,22 +4,7 @@ This module deploys a bastion instance into an existing VPC. A bastion is an ins
 
 ## Usage
 
-Full examples are in the [examples](examples) folder.
-
-```
-module "bastion" {
-  source = "github.com/we-work-in-the-cloud/terraform-ibm-vpc-bastion"
-
-  vpc_id            = ibm_is_vpc.vpc.id
-  resource_group_id = data.ibm_resource_group.resource_group.id
-  name              = "${var.name}-bastion"
-  ssh_key_ids       = [data.ibm_is_ssh_key.sshkey.id]
-  subnet_id         = ibm_is_subnet.subnet.id
-  allow_ssh_to = [
-    ibm_is_vpc_address_prefix.subnet_prefix.cidr
-  ]
-}
-```
+Full examples are in the [examples](https://github.com/we-work-in-the-cloud/terraform-ibm-vpc-bastion/tree/master/examples/vpc-and-bastion) folder.
 
 ## Requirements
 
