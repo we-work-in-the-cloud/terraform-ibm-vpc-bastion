@@ -50,7 +50,7 @@ data "ibm_is_ssh_key" "sshkey" {
 
 # one bastion
 module "bastion" {
-  source = "github.com/we-work-in-the-cloud/terraform-ibm-bastion"
+  source = "github.com/we-work-in-the-cloud/terraform-ibm-vpc-bastion"
 
   vpc_id            = ibm_is_vpc.vpc.id
   resource_group_id = data.ibm_resource_group.resource_group.id
