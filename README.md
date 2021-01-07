@@ -26,8 +26,8 @@ This module deploys a bastion instance into an existing VPC. A bastion is an ins
 | image\_name | Name of the image to use for the bastion instance | `string` | `"ibm-ubuntu-18-04-1-minimal-amd64-2"` | no |
 | profile\_name | Instance profile to use for the bastion instance | `string` | `"cx2-2x4"` | no |
 | ssh\_key\_ids | List of SSH key IDs to inject into the bastion instance | `list` | n/a | yes |
-| allow\_ssh\_from | An IP address, a CIDR block, or a single security group identifier. | `string` | `"0.0.0.0/0"` | no |
-| allow\_ssh\_to | A list of IP addresses, CIDR blocks, and security group identifiers to allow outgoing SSH connection from the bastion. | `list` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
+| allow\_ssh\_from | An IP address, a CIDR block, or a single security group identifier | `string` | `"0.0.0.0/0"` | no |
+| allow\_ssh\_to | A list of IP addresses, CIDR blocks, and security group identifiers to allow outgoing SSH connection from the bastion | `list` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
 | tags | List of tags to add on all created resources | `list` | `[]` | no |
 
 ## Outputs
