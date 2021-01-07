@@ -2,6 +2,25 @@
 
 This module deploys a bastion instance into an existing VPC. A bastion is an instance that is provisioned with a public IP address and can be accessed via SSH. Once set up, the bastion host acts as a jump server allowing secure connection to instances provisioned without a public IP address.
 
+## Usage
+
+Full examples are in the [examples](examples) folder.
+
+```
+module "bastion" {
+  source = "github.com/we-work-in-the-cloud/terraform-ibm-vpc-bastion"
+
+  vpc_id            = ibm_is_vpc.vpc.id
+  resource_group_id = data.ibm_resource_group.resource_group.id
+  name              = "${var.name}-bastion"
+  ssh_key_ids       = [data.ibm_is_ssh_key.sshkey.id]
+  subnet_id         = ibm_is_subnet.subnet.id
+  allow_ssh_to = [
+    ibm_is_vpc_address_prefix.subnet_prefix.cidr
+  ]
+}
+```
+
 ## Requirements
 
 | Name | Version |
@@ -40,6 +59,6 @@ This module deploys a bastion instance into an existing VPC. A bastion is an ins
 | bastion\_security\_group\_id | ID of the security group assigned to the bastion interface |
 | bastion\_maintenance\_group\_id | ID of the security group used to allow connection from the bastion to your instances |
 
-## Usage
 
-Full examples are in the [examples](examples) folder.
+License
+Apache 2 Licensed. See LICENSE for full details.

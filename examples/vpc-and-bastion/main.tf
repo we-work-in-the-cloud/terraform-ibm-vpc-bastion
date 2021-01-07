@@ -43,13 +43,14 @@ resource "ibm_is_subnet" "subnet" {
   ipv4_cidr_block = ibm_is_vpc_address_prefix.subnet_prefix.cidr
 }
 
+# ssh key to inject into the bastion and the instance
 data "ibm_is_ssh_key" "sshkey" {
   name = var.ssh_key_name
 }
 
 # one bastion
 module "bastion" {
-  source = "../.."
+  source = "github.com/we-work-in-the-cloud/terraform-ibm-vpc-bastion"
 
   vpc_id            = ibm_is_vpc.vpc.id
   resource_group_id = data.ibm_resource_group.resource_group.id
