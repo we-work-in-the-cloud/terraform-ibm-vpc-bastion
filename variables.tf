@@ -31,18 +31,18 @@ variable "profile_name" {
 }
 
 variable "ssh_key_ids" {
-  type        = list(any)
+  type        = list(string)
   description = "List of SSH key IDs to inject into the bastion instance"
 }
 
 variable "allow_ssh_from" {
-  type = string
+  type        = string
   description = "An IP address, a CIDR block, or a single security group identifier to allow incoming SSH connection to the bastion"
-  default = "0.0.0.0/0"
+  default     = "0.0.0.0/0"
 }
 
 variable "allow_ssh_to" {
-  type = list
+  type        = list(string)
   description = "A list of IP addresses, CIDR blocks, and security group identifiers to allow outgoing SSH connection from the bastion"
   default = [
     "0.0.0.0/0"
@@ -50,7 +50,7 @@ variable "allow_ssh_to" {
 }
 
 variable "tags" {
-  type        = list(any)
+  type        = list(string)
   description = "List of tags to add on all created resources"
   default     = []
 }
