@@ -12,10 +12,22 @@ resource "ibm_is_security_group" "bastion" {
   resource_group = var.resource_group_id
 }
 
-resource "ibm_is_security_group_rule" "ssh" {
+resource "ibm_is_security_group_rule" "ssh_inbound" {
   group     = ibm_is_security_group.bastion.id
   direction = "inbound"
   remote    = var.allow_ssh_from
+  tcp {
+    port_min = 22
+    port_max = 22
+  }
+}
+
+resource "ibm_is_security_group_rule" "ssh_output" {
+  for_each = { for allow in var.allow_ssh_to : allow => allow }
+
+  group     = ibm_is_security_group.bastion.id
+  direction = "outbound"
+  remote    = each.value
   tcp {
     port_min = 22
     port_max = 22
@@ -49,4 +61,20 @@ resource "ibm_is_floating_ip" "bastion" {
   resource_group = var.resource_group_id
 
   tags = var.tags
+}
+
+resource "ibm_is_security_group" "maintenance" {
+  name           = "${var.name}-maintenance"
+  vpc            = var.vpc_id
+  resource_group = var.resource_group_id
+}
+
+resource "ibm_is_security_group_rule" "maintenance_ssh_inbound" {
+  group     = ibm_is_security_group.maintenance.id
+  direction = "inbound"
+  remote    = ibm_is_security_group.bastion.id
+  tcp {
+    port_min = 22
+    port_max = 22
+  }
 }
