@@ -37,8 +37,16 @@ variable "ssh_key_ids" {
 
 variable "allow_ssh_from" {
   type = string
-  description = "An IP address, a CIDR block, or a single security group identifier."
+  description = "An IP address, a CIDR block, or a single security group identifier to allow incoming SSH connection to the bastion."
   default = "0.0.0.0/0"
+}
+
+variable "allow_ssh_to" {
+  type = list
+  description = "A list of IP addresses, CIDR blocks, and security group identifiers to allow outgoing SSH connection from the bastion."
+  default = [
+    "0.0.0.0/0"
+  ]
 }
 
 variable "tags" {
