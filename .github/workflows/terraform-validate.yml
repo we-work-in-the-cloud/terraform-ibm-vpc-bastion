@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: prepare
         run: |
-          echo "::add-path::$HOME/.bin"
+          echo "$HOME/.bin" >> $GITHUB_PATH
           curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh > /tmp/tfswitch-install.sh
           chmod +x /tmp/tfswitch-install.sh
           /tmp/tfswitch-install.sh -b $HOME/.bin
