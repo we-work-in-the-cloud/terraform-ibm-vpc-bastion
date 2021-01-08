@@ -10,8 +10,11 @@ jobs:
         name: checkout
         uses: actions/checkout@v2
       -
+        name: install tfswitch
+        run: curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | sudo bash
+      -
         name: get terraform
-        run: curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash && tfswitch
+        run: tfswitch
       -
         name: terraform init 
         run: find . -type f -name "*.tf" -exec dirname {} \;|sort -u | while read m; do (cd "$m" && echo "$m - init" && terraform init -input=false -backend=false) || exit 1; done
