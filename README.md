@@ -2,10 +2,6 @@
 
 This module deploys a bastion instance into an existing VPC. A bastion is an instance that is provisioned with a public IP address and can be accessed via SSH. Once set up, the bastion host acts as a jump server allowing secure connection to instances provisioned without a public IP address.
 
-## Usage
-
-Full examples are in the [examples](https://github.com/we-work-in-the-cloud/terraform-ibm-vpc-bastion/tree/master/examples) folder.
-
 ## Requirements
 
 | Name | Version |
@@ -28,6 +24,7 @@ Full examples are in the [examples](https://github.com/we-work-in-the-cloud/terr
 | subnet\_id | ID of the subnet where to create the bastion instance | `string` | n/a | yes |
 | name | Name of the bastion instance | `string` | n/a | yes |
 | image\_name | Name of the image to use for the bastion instance | `string` | `"ibm-ubuntu-18-04-1-minimal-amd64-2"` | no |
+| init\_script | Script to run during the instance initialization. Defaults to an Ubuntu specific script when set to null | `string` | `null` | no |
 | profile\_name | Instance profile to use for the bastion instance | `string` | `"cx2-2x4"` | no |
 | ssh\_key\_ids | List of SSH key IDs to inject into the bastion instance | `list(string)` | n/a | yes |
 | allow\_ssh\_from | An IP address, a CIDR block, or a single security group identifier to allow incoming SSH connection to the bastion | `string` | `"0.0.0.0/0"` | no |
@@ -44,6 +41,6 @@ Full examples are in the [examples](https://github.com/we-work-in-the-cloud/terr
 | bastion\_security\_group\_id | ID of the security group assigned to the bastion interface |
 | bastion\_maintenance\_group\_id | ID of the security group used to allow connection from the bastion to your instances |
 
+## License
 
-License
 Apache 2 Licensed. See LICENSE for full details.

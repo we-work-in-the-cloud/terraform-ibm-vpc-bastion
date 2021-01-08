@@ -24,6 +24,12 @@ variable "image_name" {
   description = "Name of the image to use for the bastion instance"
 }
 
+variable "init_script" {
+  type        = string
+  default     = null
+  description = "Script to run during the instance initialization. Defaults to an Ubuntu specific script when set to null"
+}
+
 variable "profile_name" {
   type        = string
   description = "Instance profile to use for the bastion instance"
