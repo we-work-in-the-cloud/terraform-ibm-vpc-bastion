@@ -47,11 +47,62 @@ variable "allow_ssh_from" {
   default     = "0.0.0.0/0"
 }
 
-variable "allow_ssh_to" {
-  type        = list(string)
-  description = "A list of IP addresses, CIDR blocks, and security group identifiers to allow outgoing SSH connection from the bastion"
+variable "security_group_rules" {
+  # type = list(object({
+  #   name=string,
+  #   direction=string,
+  #   remote=optional(string),
+  #   ip_version=optional(string),
+  #   tcp=optional(object({
+  #     port_min=number,
+  #     port_max=number
+  #   })),
+  #   udp=optional(object({
+  #     port_min=number,
+  #     port_max=number
+  #   })),
+  #   icmp=optional(object({
+  #     type=number,
+  #     code=optional(number)
+  #   })),
+  # }))
+  description = "List of security group rules to set on the bastion security group in addition to the SSH rules"
   default = [
-    "0.0.0.0/0"
+    {
+      name      = "http_outbound"
+      direction = "outbound"
+      remote    = "0.0.0.0/0"
+      tcp = {
+        port_min = 80
+        port_max = 80
+      }
+    },
+    {
+      name      = "https_outbound"
+      direction = "outbound"
+      remote    = "0.0.0.0/0"
+      tcp = {
+        port_min = 443
+        port_max = 443
+      }
+    },
+    {
+      name      = "dns_outbound"
+      direction = "outbound"
+      remote    = "0.0.0.0/0"
+      udp = {
+        port_min = 53
+        port_max = 53
+      }
+    },
+    {
+      name      = "icmp_outbound"
+      direction = "outbound"
+      remote    = "0.0.0.0/0"
+      icmp = {
+        type = 8
+      }
+    }
   ]
 }
 
