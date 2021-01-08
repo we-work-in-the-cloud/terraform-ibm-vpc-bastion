@@ -6,8 +6,6 @@ jobs:
   terraform_validate:
     runs-on: ubuntu-latest
     steps:
-      - name: add sudo
-        run: apt update && apt install sudo
       -
         name: checkout
         uses: actions/checkout@v2
