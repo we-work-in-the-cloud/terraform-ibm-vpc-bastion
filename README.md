@@ -43,4 +43,4 @@ This module deploys a bastion instance into an existing VPC. A bastion is an ins
 
 ## License
 
-Apache 2 Licensed. See LICENSE for full details.
+Apache 2 Licensed. See [LICENSE](LICENSE) for full details.
