@@ -57,9 +57,6 @@ module "bastion" {
   name              = "${var.name}-bastion"
   ssh_key_ids       = [data.ibm_is_ssh_key.sshkey.id]
   subnet_id         = ibm_is_subnet.subnet.id
-  allow_ssh_to = [
-    ibm_is_vpc_address_prefix.subnet_prefix.cidr
-  ]
 }
 
 # one private instance

@@ -22,12 +22,10 @@ resource "ibm_is_security_group_rule" "ssh_inbound" {
   }
 }
 
-resource "ibm_is_security_group_rule" "ssh_output" {
-  for_each = { for allow in var.allow_ssh_to : allow => allow }
-
+resource "ibm_is_security_group_rule" "ssh_to_host_in_maintenance" {
   group     = ibm_is_security_group.bastion.id
   direction = "outbound"
-  remote    = each.value
+  remote    = ibm_is_security_group.maintenance.id
   tcp {
     port_min = 22
     port_max = 22
