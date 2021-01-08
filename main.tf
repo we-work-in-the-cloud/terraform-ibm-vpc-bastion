@@ -32,6 +32,16 @@ resource "ibm_is_security_group_rule" "ssh_to_host_in_maintenance" {
   }
 }
 
+resource "ibm_is_security_group_rule" "ssh_to_self_public_ip" {
+  group     = ibm_is_security_group.bastion.id
+  direction = "outbound"
+  remote    = ibm_is_floating_ip.bastion.address
+  tcp {
+    port_min = 22
+    port_max = 22
+  }
+}
+
 resource "ibm_is_security_group_rule" "additional_all_rules" {
   for_each = {
     for rule in var.security_group_rules : rule.name => rule if lookup(rule, "tcp", null) == null && lookup(rule, "udp", null) == null && lookup(rule, "icmp", null) == null
