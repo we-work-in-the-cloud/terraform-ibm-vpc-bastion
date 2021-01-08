@@ -6,15 +6,18 @@ jobs:
   terraform_validate:
     runs-on: ubuntu-latest
     steps:
+      - name: prepare
+        run: |
+          echo "::add-path::$HOME/.bin"
+          curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh > /tmp/tfswitch-install.sh
+          chmod +x /tmp/tfswitch-install.sh
+          /tmp/tfswitch-install.sh -b $HOME/.bin
       -
         name: checkout
         uses: actions/checkout@v2
       -
-        name: install tfswitch
-        run: curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | sudo bash
-      -
         name: get terraform
-        run: sudo tfswitch
+        run: tfswitch -b $HOME/.bin/terraform
       -
         name: terraform init 
         run: find . -type f -name "*.tf" -exec dirname {} \;|sort -u | while read m; do (cd "$m" && echo "$m - init" && terraform init -input=false -backend=false) || exit 1; done
