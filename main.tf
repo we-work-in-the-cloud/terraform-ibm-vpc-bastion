@@ -53,7 +53,7 @@ resource "ibm_is_security_group_rule" "additional_all_rules" {
 }
 
 resource "ibm_is_security_group_rule" "additional_tcp_rules" {
-  for_each   = {
+  for_each = {
     for rule in var.security_group_rules : rule.name => rule if lookup(rule, "tcp", null) != null
   }
   group      = ibm_is_security_group.bastion.id
@@ -68,7 +68,7 @@ resource "ibm_is_security_group_rule" "additional_tcp_rules" {
 }
 
 resource "ibm_is_security_group_rule" "additional_udp_rules" {
-  for_each   = {
+  for_each = {
     for rule in var.security_group_rules : rule.name => rule if lookup(rule, "udp", null) != null
   }
   group      = ibm_is_security_group.bastion.id
@@ -83,7 +83,7 @@ resource "ibm_is_security_group_rule" "additional_udp_rules" {
 }
 
 resource "ibm_is_security_group_rule" "additional_icmp_rules" {
-  for_each   = {
+  for_each = {
     for rule in var.security_group_rules : rule.name => rule if lookup(rule, "icmp", null) != null
   }
   group      = ibm_is_security_group.bastion.id

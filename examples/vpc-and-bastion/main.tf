@@ -50,7 +50,7 @@ data "ibm_is_ssh_key" "sshkey" {
 
 # one bastion
 module "bastion" {
-  source  = "we-work-in-the-cloud/vpc-bastion/ibm"
+  source = "we-work-in-the-cloud/vpc-bastion/ibm"
 
   vpc_id            = ibm_is_vpc.vpc.id
   resource_group_id = data.ibm_resource_group.resource_group.id
