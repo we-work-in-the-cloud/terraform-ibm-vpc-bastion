@@ -106,7 +106,7 @@ resource "ibm_is_instance" "bastion" {
   keys           = var.ssh_key_ids
   resource_group = var.resource_group_id
 
-  user_data = var.init_script != null ? var.init_script : file("${path.module}/init-script-ubuntu.sh")
+  user_data = var.init_script != "" ? var.init_script : file("${path.module}/init-script-ubuntu.sh")
 
   primary_network_interface {
     subnet          = data.ibm_is_subnet.subnet.id

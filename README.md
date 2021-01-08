@@ -24,7 +24,7 @@ This module deploys a bastion instance into an existing VPC. A bastion is an ins
 | subnet\_id | ID of the subnet where to create the bastion instance | `string` | n/a | yes |
 | name | Name of the bastion instance | `string` | n/a | yes |
 | image\_name | Name of the image to use for the bastion instance | `string` | `"ibm-ubuntu-18-04-1-minimal-amd64-2"` | no |
-| init\_script | Script to run during the instance initialization. Defaults to an Ubuntu specific script when set to null | `string` | `null` | no |
+| init\_script | Script to run during the instance initialization. Defaults to an Ubuntu specific script when set to empty | `string` | `""` | no |
 | profile\_name | Instance profile to use for the bastion instance | `string` | `"cx2-2x4"` | no |
 | ssh\_key\_ids | List of SSH key IDs to inject into the bastion instance | `list(string)` | n/a | yes |
 | allow\_ssh\_from | An IP address, a CIDR block, or a single security group identifier to allow incoming SSH connection to the bastion | `string` | `"0.0.0.0/0"` | no |

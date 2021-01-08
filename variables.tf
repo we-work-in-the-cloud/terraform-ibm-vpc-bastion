@@ -26,8 +26,8 @@ variable "image_name" {
 
 variable "init_script" {
   type        = string
-  default     = null
-  description = "Script to run during the instance initialization. Defaults to an Ubuntu specific script when set to null"
+  default     = ""
+  description = "Script to run during the instance initialization. Defaults to an Ubuntu specific script when set to empty"
 }
 
 variable "profile_name" {
