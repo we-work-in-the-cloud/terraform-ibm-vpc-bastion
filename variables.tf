@@ -111,3 +111,9 @@ variable "tags" {
   description = "List of tags to add on all created resources"
   default     = []
 }
+
+variable "disable_public_ip" {
+  type        = bool
+  description = "Flag indicating that the bastion instance should be provisioned without attaching a floating ip. This configuration is useful for servers that are accessible behind a vpn server."
+  default     = false
+}

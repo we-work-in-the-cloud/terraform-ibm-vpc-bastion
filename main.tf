@@ -33,6 +33,8 @@ resource "ibm_is_security_group_rule" "ssh_to_host_in_maintenance" {
 }
 
 resource "ibm_is_security_group_rule" "ssh_to_self_public_ip" {
+  count = var.disable_public_ip ? 0 : 1
+
   group     = ibm_is_security_group.bastion.id
   direction = "outbound"
   remote    = ibm_is_floating_ip.bastion.address
@@ -121,6 +123,8 @@ resource "ibm_is_instance" "bastion" {
 }
 
 resource "ibm_is_floating_ip" "bastion" {
+  count = var.disable_public_ip ? 0 : 1
+
   name           = "${var.name}-ip"
   target         = ibm_is_instance.bastion.primary_network_interface.0.id
   resource_group = var.resource_group_id

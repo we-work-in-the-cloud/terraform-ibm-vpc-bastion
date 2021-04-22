@@ -9,7 +9,7 @@ output "bastion_private_ip" {
 }
 
 output "bastion_public_ip" {
-  value       = ibm_is_floating_ip.bastion.address
+  value       = !var.disable_public_ip ? ibm_is_floating_ip.bastion.address : ""
   description = "Public IP address of the bastion virtual server instance"
 }
 
