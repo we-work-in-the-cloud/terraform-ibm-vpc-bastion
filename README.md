@@ -41,6 +41,7 @@ This module deploys a bastion instance into an existing VPC. A bastion is an ins
 | bastion\_public\_ip | Public IP address of the bastion virtual server instance, null if none was allocated. |
 | bastion\_security\_group\_id | ID of the security group assigned to the bastion interface |
 | bastion\_maintenance\_group\_id | ID of the security group used to allow connection from the bastion to your instances |
+| bastion\_network\_interface\_ids | The ID(s) of the primary_network_interface for the bastion instance |
 
 ## License
 

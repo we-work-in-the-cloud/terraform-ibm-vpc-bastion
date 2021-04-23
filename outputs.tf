@@ -4,7 +4,7 @@ output "bastion_id" {
 }
 
 output "bastion_private_ip" {
-  value       = ibm_is_instance.bastion.primary_network_interface.0.primary_ipv4_address
+  value       = ibm_is_instance.bastion.primary_network_interface[0].primary_ipv4_address
   description = "Private IP address of the bastion virtual server instance"
 }
 
@@ -21,4 +21,9 @@ output "bastion_security_group_id" {
 output "bastion_maintenance_group_id" {
   value       = ibm_is_security_group.maintenance.id
   description = "ID of the security group used to allow connection from the bastion to your instances"
+}
+
+output "bastion_network_interface_ids" {
+  value       = ibm_is_instance.bastion.primary_network_interface[*].id
+  description = "The ID(s) of the primary_network_interface for the bastion instance"
 }
