@@ -9,7 +9,7 @@ output "bastion_private_ip" {
 }
 
 output "bastion_public_ip" {
-  value       = var.create_public_ip ? ibm_is_floating_ip.bastion.0.address : null
+  value       = var.create_public_ip ? ibm_is_floating_ip.bastion[0].address : null
   description = "Public IP address of the bastion virtual server instance, null if none was allocated."
 }
 
@@ -25,5 +25,5 @@ output "bastion_maintenance_group_id" {
 
 output "bastion_network_interface_ids" {
   value       = ibm_is_instance.bastion.primary_network_interface[*].id
-  description = "The ID(s) of the primary_network_interface for the bastion instance"
+  description = "ID(s) of the primary_network_interface for the bastion instance"
 }
