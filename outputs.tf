@@ -9,8 +9,8 @@ output "bastion_private_ip" {
 }
 
 output "bastion_public_ip" {
-  value       = ibm_is_floating_ip.bastion.address
-  description = "Public IP address of the bastion virtual server instance"
+  value       = var.create_public_ip ? ibm_is_floating_ip.bastion.0.address : null
+  description = "Public IP address of the bastion virtual server instance, null if none was allocated."
 }
 
 output "bastion_security_group_id" {

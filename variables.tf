@@ -47,6 +47,12 @@ variable "allow_ssh_from" {
   default     = "0.0.0.0/0"
 }
 
+variable "create_public_ip" {
+  type        = bool
+  description = "Set whether to allocate a public IP address for the bastion instance"
+  default     = true
+}
+
 variable "security_group_rules" {
   # type = list(object({
   #   name=string,

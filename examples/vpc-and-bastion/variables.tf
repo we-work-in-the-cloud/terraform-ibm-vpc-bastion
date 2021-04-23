@@ -19,6 +19,11 @@ variable "ssh_key_name" {
   description = "Name of an existing VPC SSH key to inject into the bastion and instance to allow remote connection"
 }
 
+variable "create_public_ip" {
+  type    = bool
+  default = true
+}
+
 variable "resource_group" {
   type        = string
   default     = null
